@@ -9,6 +9,7 @@ CREATE TABLE Products (
     itemId INT NOT NULL AUTO_INCREMENT,
     price DECIMAL (10,2) NOT NULL,
     name VARCHAR (255),
+    inventory INT (11) DEFAULT 1,
     PRIMARY KEY(itemId));
 
 CREATE TABLE Discounts (
