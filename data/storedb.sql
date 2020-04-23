@@ -56,9 +56,9 @@ DROP TABLE IF EXISTS `Discounts`;
 CREATE TABLE `Discounts` (
   `discountId` int(11) NOT NULL AUTO_INCREMENT,
   `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `exp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `exp` datetime DEFAULT NULL,
   PRIMARY KEY (`discountId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,23 +67,9 @@ CREATE TABLE `Discounts` (
 
 LOCK TABLES `Discounts` WRITE;
 /*!40000 ALTER TABLE `Discounts` DISABLE KEYS */;
+INSERT INTO `Discounts` VALUES (1,'2020-04-23 04:35:01',NULL);
 /*!40000 ALTER TABLE `Discounts` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 trigger discountexp BEFORE INSERT ON Discounts FOR EACH ROW BEGIN SET NEW.exp = DATE(DATE_ADD(NEW.dateCreated, INTERVAL 7 DAY)); END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `Orders`
@@ -186,6 +172,7 @@ CREATE TABLE `Products` (
   `itemId` int(11) NOT NULL AUTO_INCREMENT,
   `price` decimal(10,2) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `inventory` int(11) DEFAULT '1',
   PRIMARY KEY (`itemId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -208,4 +195,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-23  4:13:00
+-- Dump completed on 2020-04-23 16:49:29
